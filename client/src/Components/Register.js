@@ -27,7 +27,7 @@ const Register = () => {
         })
     }
 
-    const addUserData = (el) => {
+    const addUserData = async (el) => {
         el.preventDefault()
 
         const { fname, email, password, cpassword } = inpval;
@@ -62,6 +62,19 @@ const Register = () => {
         }
         else {
             // alert("Registration Successfully Done")
+
+            const data = await fetch("http://localhost:8002/register", {
+                methods: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+                // body: JSON.stringify({
+                //     fname, email, password, cpassword
+                // })
+            });
+
+            const res = await data.json();
+            console.log(res);
         }
 
     }
